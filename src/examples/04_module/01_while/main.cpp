@@ -2,8 +2,10 @@
 
 int main() 
 {
-	std::string name = "John";
-	display(name);
-
+	std::cout<<sum_of_squares();
+	std::cout<<"\n";
+	auto num = 5;
+	std::cout<<sum_of_squares(num);
+	
 	return 0;
 }
