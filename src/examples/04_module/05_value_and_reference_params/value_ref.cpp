@@ -30,3 +30,22 @@ void pass_by_const_ref(const int& num)
 {
     
 }
+
+void use_static_variable()
+{
+    static auto num_static = 0;
+    auto num = 0;
+    std::cout<<num_static<<" "<<num<<"\n";
+    num_static++;
+    num++;
+}
+
+int calculate_weekly_pay(int salary)
+{
+    return salary / 52;
+}
+
+int calculate_weekly_pay(int hours, int rate)
+{
+    return hours * rate;
+}
