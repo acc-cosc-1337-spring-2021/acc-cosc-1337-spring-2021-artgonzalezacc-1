@@ -13,6 +13,13 @@ TEST_CASE("Test new bank account object balance")
 	REQUIRE(account.get_balance() == 0);
 }
 
+TEST_CASE("Test new bank account with given begin balance")
+{
+	BankAccount account(100);
+
+	REQUIRE(account.get_balance() == 100);
+}
+
 TEST_CASE("Test bank account deposit")
 {
 	BankAccount account;
@@ -20,6 +27,14 @@ TEST_CASE("Test bank account deposit")
 
 	REQUIRE(account.get_balance() == 50);
 
+}
+
+TEST_CASE("Test bank account deposit with given begin balance")
+{
+	BankAccount account(100);
+
+	account.deposit(50);
+	REQUIRE(account.get_balance() == 150);
 }
 
 TEST_CASE("Test bank account deposit with negative amount")
@@ -40,6 +55,14 @@ TEST_CASE("Test bank account withdraw")
 
 	account.withdraw(10);
 	REQUIRE(account.get_balance() == 40);
+}
+
+TEST_CASE("Test bank account withdraw with a given begin balance")
+{
+	BankAccount account(100);
+	account.withdraw(10);
+
+	REQUIRE(account.get_balance() == 90);
 }
 
 TEST_CASE("Test Bank account withdraw with negative amount")

@@ -5,7 +5,9 @@ using std::cout;
 
 int main()
 {
-	BankAccount account;
+	BankAccount account = get_account(100);
+
+	display_balance(account);
 	
 //	cout<<sizeof(account)<<"\n";
 	auto balance = account.get_balance();
