@@ -1,3 +1,4 @@
+#include "atm.h"
 #include "bank_account.h"
 #include<iostream>
 using std::cout;
@@ -6,7 +7,11 @@ using std::cout;
 int main()
 {
 	BankAccount account = get_account(100);
+	ATM atm(account);
 
+	atm.display_balance();
+
+	friend_display_balance(account);
 	display_balance(account);
 	
 //	cout<<sizeof(account)<<"\n";

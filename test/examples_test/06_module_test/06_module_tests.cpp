@@ -13,6 +13,14 @@ TEST_CASE("Test new bank account object balance")
 	REQUIRE(account.get_balance() == 0);
 }
 
+TEST_CASE("Test static bank_balance top")
+{
+	BankAccount account;
+	account.deposit(50);
+
+	REQUIRE(account.get_bank_balance() == 50);
+}
+
 TEST_CASE("Test new bank account with given begin balance")
 {
 	BankAccount account(100);
@@ -83,4 +91,12 @@ TEST_CASE("Test Bank account withdraw with NSF")
 
 	account.withdraw(51);
 	REQUIRE(account.get_balance() == 50);
+}
+
+TEST_CASE("Test static bank_balance")
+{
+	BankAccount account;
+	account.deposit(50);
+
+	REQUIRE(account.get_bank_balance() == 680);
 }
