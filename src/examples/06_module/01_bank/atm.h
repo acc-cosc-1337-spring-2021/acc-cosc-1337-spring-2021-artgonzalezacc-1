@@ -2,17 +2,20 @@
 #ifndef ATM_H
 #define ATM_H
 #include<iostream>
+#include<stdlib.h>
+#include<vector>
 #include "bank_account.h"
 
 class ATM
 {
 public:
-    ATM(BankAccount& a) : account (a){}
+    ATM();
     void display_balance()const;
-
+    void scan_card();
 private:
-    BankAccount& account;
-
+    std::vector<BankAccount> accounts;
+    int get_balance_from_DB();
+    int customer_index{0};
 };
 
 

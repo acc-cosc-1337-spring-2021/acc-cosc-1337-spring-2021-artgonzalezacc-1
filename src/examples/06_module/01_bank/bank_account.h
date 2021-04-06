@@ -1,4 +1,20 @@
 //bank_account.h
+#ifndef BRANCH_BANK_H
+#define BRANCH_BANK_H
+
+class BranchBank
+{
+public:
+    BranchBank(int b) : branch_balance(b){}
+    void update_balance(int b);
+    int get_branch_bank_balance()const{return branch_balance;}
+private:    
+    int branch_balance;
+};
+
+#endif
+
+
 #ifndef BANK_ACCOUNT_H
 #define BANK_ACCOUNT_H
 #include<iostream>
@@ -6,10 +22,14 @@
 class BankAccount
 {
 friend void friend_display_balance(const BankAccount& account);
+friend void BranchBank::update_balance(int b);
+friend std::ostream& operator<<(std::ostream& out, const BankAccount& account);
+friend std::istream& operator>>(std::istream& in, BankAccount& account);
+friend BankAccount operator+(const BankAccount& a1, const BankAccount& a2);
 
 public://access specifiers-USERS OF OUR CLASS(OTHER OBJECTS) CAN SEE WHAT'S IN PUBLIC
     BankAccount() = default;
-    BankAccount(int b) : balance(b){bank_balance += balance;}
+    explicit BankAccount(int b) : balance(b){bank_balance += balance;}
     int get_balance()const{return balance;}
     void deposit(int amount);
     void withdraw(int amount);

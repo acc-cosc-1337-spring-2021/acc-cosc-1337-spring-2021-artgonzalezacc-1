@@ -1,15 +1,31 @@
 #include "atm.h"
 #include "bank_account.h"
 #include<iostream>
-using std::cout;
+#include<time.h>
+using std::cout; using std::cin;
 
 
 int main()
 {
+	srand(time(NULL));
 	BankAccount account = get_account(100);
-	ATM atm(account);
+	BankAccount a1(100), a2(100);
+	BankAccount a3 = a1 + a2;
+	cout<<a3;
+//	display_balance(account);
+	
+	/*char choice;
+	ATM atm;
 
-	atm.display_balance();
+	do
+	{
+		atm.scan_card();
+		atm.display_balance();
+
+		cout<<"Continue y?";
+		cin>>choice;
+
+	}while(choice == 'y' || choice == 'Y');
 
 	friend_display_balance(account);
 	display_balance(account);
@@ -28,7 +44,7 @@ int main()
 	cout<<"Withdraw $10\n";
 	account.withdraw(10);
 	balance = account.get_balance();
-	cout<<"Balance: "<<balance<<"\n";
+	cout<<"Balance: "<<balance<<"\n";*/
 
 	return 0;
 }
