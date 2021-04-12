@@ -55,11 +55,15 @@ int main()
 	//memory management like the string and vector classes
 	cout<<"up num address "<<&up_num<<"\n";
 	cout<<"Value of up num: "<<*up_num<<"\n\n";
+	use_smart_pointer(up_num);
 
 	//what about move:
 	vector<unique_ptr<int>> numbers;
 	numbers.push_back(std::move(up_num));
 	cout<<"Vector value "<<*numbers[0]<<"\n";
 
+	unique_ptr<int> up_num2 = get_smart_pointer();
+	cout<<"Value: "<<*up_num2;
+	
 	return 0;
 }
