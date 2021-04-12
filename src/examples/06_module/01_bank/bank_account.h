@@ -34,8 +34,12 @@ public://access specifiers-USERS OF OUR CLASS(OTHER OBJECTS) CAN SEE WHAT'S IN P
     void deposit(int amount);
     void withdraw(int amount);
     static int get_bank_balance(){return bank_balance;}
-private://access specifier-ONLY BANK ACCOUNT CLASS SEES DATA/FUNCTIONS IN PRIVATE
+
+protected://derived classes can directly access class variables or class functions
     int balance{0};//this is customer balance         
+
+private://access specifier-ONLY BANK ACCOUNT CLASS SEES DATA/FUNCTIONS IN PRIVATE
+    
     static int bank_balance;//this is the total of all bank customer balances
 };
 
