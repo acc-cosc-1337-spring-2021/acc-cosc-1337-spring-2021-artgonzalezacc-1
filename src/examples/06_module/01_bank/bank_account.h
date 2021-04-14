@@ -25,14 +25,14 @@ friend void friend_display_balance(const BankAccount& account);
 friend void BranchBank::update_balance(int b);
 friend std::ostream& operator<<(std::ostream& out, const BankAccount& account);
 friend std::istream& operator>>(std::istream& in, BankAccount& account);
-friend BankAccount operator+(const BankAccount& a1, const BankAccount& a2);
+//friend BankAccount operator+(const BankAccount& a1, const BankAccount& a2);
 
 public://access specifiers-USERS OF OUR CLASS(OTHER OBJECTS) CAN SEE WHAT'S IN PUBLIC
     BankAccount() = default;
     explicit BankAccount(int b) : balance(b){bank_balance += balance;}
-    int get_balance()const{return balance;}
-    void deposit(int amount);
-    void withdraw(int amount);
+    virtual int get_balance()const = 0;//pure virtual function
+    virtual void deposit(int amount) final;//virtual function
+    virtual void withdraw(int amount) final;
     static int get_bank_balance(){return bank_balance;}
 
 protected://derived classes can directly access class variables or class functions
@@ -45,6 +45,6 @@ private://access specifier-ONLY BANK ACCOUNT CLASS SEES DATA/FUNCTIONS IN PRIVAT
 
 //FREE FUNCTIONS-NOT PART OF THE BANK ACCOUNT CLASS!!!!!!!
 void display_balance(const BankAccount& account);
-BankAccount get_account(int balance);
+//BankAccount get_account(int balance);
 
 #endif
