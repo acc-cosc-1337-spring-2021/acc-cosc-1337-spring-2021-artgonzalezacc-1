@@ -21,15 +21,22 @@ int main()
 	circles[1].draw();
 	circles[2].draw();
 
+	Shape* shapes = new Circle[3];
+	shapes[0].draw();
+	shapes[1].draw();
+	shapes[2].draw();
 
+	delete[] shapes;
+	std::cout<<"pointer to pointers\n";
+	//work with circles and lines
+	Shape** shapes1 = new Shape*[3];//pointer list
+	shapes1[0] = new Circle();
+	shapes1[1] = new Line();
+	shapes1[2] = new Line();
 
-
-
-
-
-
-
-
+	shapes1[0]->draw();
+	shapes1[1]->draw();
+	shapes1[2]->draw();
 
 
 
