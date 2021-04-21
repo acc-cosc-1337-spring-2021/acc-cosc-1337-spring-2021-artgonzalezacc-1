@@ -13,8 +13,25 @@ using std::vector;
 
 int main()
 {
+	const int SIZE = 3;
+	SavingsAccount savings[SIZE]{SavingsAccount(50), SavingsAccount(100),
+	                             SavingsAccount(150)};
+	
+	cout<<savings[0]<<"\n";
+	cout<<savings[1]<<"\n";
+	cout<<savings[2]<<"\n\n";
+
+	for(auto saving: savings)
+	{
+		cout<<saving<<"\n";
+	}
+	cout<<"\n\n Pointers";
+	SavingsAccount* ptr = savings;
+	cout<<*ptr<<"\n";
+	cout<<ptr->get_balance()<<"\n";
+
 	//Derived Class pointer can be assigned to a Base class pointer
-	unique_ptr<BankAccount> s = make_unique<SavingsAccount>(1000);
+	/*unique_ptr<BankAccount> s = make_unique<SavingsAccount>(1000);
 	cout<<"Balance: "<<s->get_balance()<<"\n";
 	cout<<"Interest Balance: "<<static_cast<SavingsAccount*>(s.get())->get_balance()<<"\n";
 	cout<<"Interest Balance: "<<static_cast<SavingsAccount*>(s.get())->get_balance_with_interest()<<"\n";
@@ -35,7 +52,7 @@ int main()
 	for(auto& account: accounts)
 	{
 		cout<<account->get_balance()<<"\n";
-	}
+	}*/
 	
 	return 0;
 }
