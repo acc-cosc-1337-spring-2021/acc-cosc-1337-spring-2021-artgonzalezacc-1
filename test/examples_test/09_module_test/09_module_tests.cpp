@@ -42,3 +42,10 @@ TEST_CASE("Test overwrite new Vector from an existing Vector instance")
 
 	REQUIRE(v[0] != v1[0]) ;
 }
+
+TEST_CASE("Test vector dynamic memory with std move")
+{
+	Vector v(3);
+	Vector v1 = std::move(v);
+
+}

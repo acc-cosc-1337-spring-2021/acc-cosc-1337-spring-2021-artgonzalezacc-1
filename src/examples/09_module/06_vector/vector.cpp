@@ -4,7 +4,7 @@ using std::cout;
 
 //
  Vector::Vector(std::size_t s) 
- : size(s) , elements{new int[s]}
+ : size(s) , space{s}, elements{new int[s]}
  {
      cout<<"Create and init elements "<<elements<<" \n";
      for(std::size_t i=0; i < size; ++i)
@@ -53,6 +53,105 @@ using std::cout;
      return *this;
  }
 
+/*
+1-Get dynamic memory from v
+2-Get size from v
+3 point v.elements to nullptr
+*/
+ Vector::Vector(Vector&& v)
+ : size{v.size}, elements{v.elements}
+ {
+     cout<<"Move constructor "<<elements<<"\n";
+     v.size = 0;
+     v.elements = nullptr;
+ }
+
+/*
+1-Clear/delete original dynamic memory
+2-point elements to v.elements
+3-get the size from v
+4-point v.elements to nullptr
+5-set v.size to 0
+*/
+Vector& Vector::operator=(Vector&& v)
+ {
+    
+    delete elements;
+    elements = v.elements;
+    cout<<"Move assignment "<<elements<<"\n";
+    size = v.size;
+    v.elements = nullptr;
+    v.size = 0;
+
+    return *this;
+ }
+
+/*
+1-Make sure new allocation is greater than space
+2-Create temp dynamic memory of size new allocation
+3-Copy values from old memory array to temp array
+4-Delete the old array 
+5-Set elements to temp memory array
+6-set space = new allocation
+*/
+void Vector::Reserve(std::size_t new_allocation)
+{
+    if(new_allocation <= space)
+    {
+        return;
+    }
+
+    int* temp = new int[new_allocation];
+
+    for(std::size_t i=0; i < size; ++i)
+    {
+        temp[i] = elements[i];
+    }
+
+    delete[]elements;
+    elements = temp;
+    space = new_allocation;
+}
+
+/*
+1-Call reserve function w new allocation value
+2-Initialize elements beyond size
+3-Set size to new allocation
+*/
+void Vector::Resize(std::size_t new_allocation)
+{
+    Reserve(new_allocation);
+
+    for(std::size_t i=0; i < new_allocation; ++i)
+    {
+        elements[i] = 0;
+    }
+
+    size = new_allocation;
+}
+
+/*
+1- if space 0 call Reserve with Reserve Default Size
+2- else if size == space call Reserve w space * Reserve Default Multiplier
+NOT PART OF ELSE IF
+3-Add value to the end of the elements array
+4-increment size
+*/
+void Vector::PushBack(int value)
+{
+    if(space == 0)
+    {
+        Reserve(RESERVE_DEFAULT_SIZE);
+    }
+    else if(space == size)
+    {
+        Reserve(space * RESERVE_DEFAULT_MULTIPILIER);
+    }
+
+    elements[size] = value;
+    size++;
+}
+
 Vector::~Vector()
 {
     cout<<"Clear memory\n";
@@ -70,4 +169,10 @@ void use_heap_vector()
 {
     Vector* v = new Vector(3);
     delete v;//executes destructor
+}
+
+Vector get_vector()
+{
+    Vector v(3);
+    return v;
 }
